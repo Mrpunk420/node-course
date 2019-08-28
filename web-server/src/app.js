@@ -9,7 +9,28 @@ const app = express()
 
 const publicDirPath = path.join(__dirname, '../public')
 
+app.set('view engine','hbs')
+
 app.use(express.static(publicDirPath))
+
+
+app.get('/', (req, res) =>
+{
+    res.render('index', {
+        title: 'Weather App',
+        name: 'Amit',
+    })
+})
+
+app.get('/help', (req, res) =>
+{
+    res.render('help', {
+        title: 'Help Page',
+        message: 'This is the help page',
+    })
+})
+
+
 
 //req is request and res is response
 
@@ -27,7 +48,10 @@ app.get('/help', (req, res) =>
 
 app.get('/about', (req, res) =>
 {
-    res.send('<h2>About Page</h2>')
+    res.render('about',{
+        title: 'Weather App',
+        name: 'Amit',
+    })
 })
 
 app.get('/weather', (req, res) =>
